@@ -5,14 +5,20 @@ import { useState } from 'react';
 
 function App() {
 
+  const [entries, setEntries] = useState([{ id: 1 }, { id: 2 }]);
+
+  const addEntry = () => {
+    setEntries([...entries, { id: entries.length+1 }]);
+  }
+
+  const removeEntry = (id) => {
+    setEntries(entries.filter((entry) => entry.id !== id));
+  }
+
   return (
     <div className="calc">
-      <Entry />
-      <Entry />
-      <Entry />
-      <Entry />
-      <Entry />
-      <button className='add'>Add</button>
+      {entries.map((entry) => <Entry key={entry.id} id={entry.id} />)}
+      <button className='add' onClick={addEntry}>Add</button>
     </div>
   );
 }
