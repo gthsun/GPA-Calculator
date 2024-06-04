@@ -11,6 +11,7 @@ function App() {
       <Entry />
       <Entry />
       <Entry />
+      <Entry />
       <button className='add'>Add</button>
     </div>
   );
