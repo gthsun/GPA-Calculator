@@ -1,6 +1,7 @@
-function Entry() {
+function Entry(props) {
   return (
     <div className="entry">
+      <p>{props.id}</p>
       <label>
         Course Name: <input type="select" placeholder="Enter Here"></input>
       </label>
@@ -28,7 +29,6 @@ function Entry() {
       <label>
         Credit Hours: <input type="text" placeholder="Enter Here"></input>
       </label>
-      <button>Remove</button>
     </div>
   );
 }
