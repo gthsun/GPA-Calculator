@@ -1,33 +1,50 @@
-function Entry(props) {
+import React from "react";
+
+function Entry({ id, courseName, grade, credits, updateEntry }) {
+  const handleInputChange = (e, field) => {
+    updateEntry(id, field, e.target.value);
+  };
+
   return (
     <div className="entry">
-      <p>{props.id}</p>
       <label>
-        Course Name: <input type="select" placeholder="Enter Here"></input>
+        Course Name:
+        <input
+          type="text"
+          value={courseName}
+          placeholder="Enter Here"
+          onChange={(e) => handleInputChange(e, "courseName")}
+        />
       </label>
       <label>
-        Letter Grade:{" "}
-        <select>
-          <option value="" selected disabled hidden>
-            Choose here
+        Letter Grade:
+        <select value={grade} onChange={(e) => handleInputChange(e, "grade")}>
+          <option value="" disabled selected>
+            Select Grade
           </option>
-          <option value="a+">A+</option>
-          <option value="a">A</option>
-          <option value="a-">A-</option>
-          <option value="b+">B+</option>
-          <option value="b">B</option>
-          <option value="b-">B-</option>
-          <option value="c+">C+</option>
-          <option value="c">C</option>
-          <option value="c-">C-</option>
-          <option value="d+">D+</option>
-          <option value="d">D</option>
-          <option value="d-">D-</option>
-          <option value="f">F</option>
+          <option value="A+">A+</option>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+          <option value="D+">D+</option>
+          <option value="D">D</option>
+          <option value="D-">D-</option>
+          <option value="F">F</option>
         </select>
       </label>
       <label>
-        Credit Hours: <input type="text" placeholder="Enter Here"></input>
+        Credits:
+        <input
+          type="text"
+          value={credits}
+          placeholder="Enter Here"
+          onChange={(e) => handleInputChange(e, "credits")}
+        />
       </label>
     </div>
   );
