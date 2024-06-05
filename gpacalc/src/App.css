@@ -4,7 +4,6 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .main{
@@ -15,12 +14,19 @@ body {
 
 .title{
   color: #E57200;
-  font-size: 45px;
+  font-size: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 85px;
-  margin-top: 110px;
+  text-align: center;
+  margin-top: 160px;
+  font-family: "Days One", sans-serif;
+}
+
+.desc{
+  color: #f89430;
+  margin-top: 50px;
+  font-size: 15px;
 }
 
 .close-icon{
@@ -28,6 +34,7 @@ body {
 }
 
 .gpa-container{
+  font-family: "Aldrich", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +52,8 @@ body {
 }
 
 .gpa-text{
-  font-size: 30px;
+  font-size: 25px;
+  inline-size: 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -86,6 +94,7 @@ body {
 }
 
 .calc{
+  font-family: "Mukta Vaani", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,12 +112,19 @@ body {
   box-shadow: 0px 5px 0px #8B4000;
 }
 
+.add:hover, .clear:hover{
+  background-color: #313f69;
+}
+
 .remove{
-  font-size: 30px;
-  color: #E57200;
-  width: 70px;
-  height: 50px;
+  width: 50px;
+  height: 60px;
+  align-items: center;
   padding: 10px;
+}
+
+.remove:hover{
+  background-color: #313f69;
 }
 
 .buttons{
@@ -123,6 +139,10 @@ body {
   color: #E57200;
   padding-left: 5px;
   background-color : #1a2238; 
+}
+
+.course:hover, .grade:hover, .credits:hover {
+  background-color: #313f69; 
 }
 
 .course::placeholder, .credits::placeholder{

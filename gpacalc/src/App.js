@@ -44,7 +44,8 @@ function App() {
 
   const grades = (grade) => {
     switch(grade){
-      case('A+', 'A'): return 4;
+      case('A+'): return 4;
+      case('A'): return 4;
       case('A-'): return 3.7;
       case('B+'): return 3.3;
       case('B'): return 3;
@@ -71,16 +72,25 @@ function App() {
     return numCredits > 0 ? Math.round((gradePoints/numCredits + Number.EPSILON) * 100) / 100 : "???";
   }
 
+  const gpaColor = (gpa) => {
+    if (gpa === "???") {
+      return 'rgb(229, 115, 0)';
+    }
+    const green = Math.round((gpa / 4) * 255);
+    return `rgb(150, ${green}, 0)`;
+  };
+
   return (
     <div className='main'>
       <div className='title'>
         <h1>University of Virginia</h1>
         <h1>GPA Calculator</h1>
+        <p className='desc'>I created this application to help me learn ReactJS. It follow's UVA's grading scale. I hope it helps you for all your GPA calculation needs!</p>
       </div>
       <div className='full'>
         <div className='gpa-container'>
           <h5 className='gpa-text'>Your GPA is</h5>
-          <h1 className='gpa'>{gpa()}</h1>
+          <h1 className='gpa' style={{ color: gpaColor(gpa()) }}>{gpa()}</h1>
         </div>
         <div className="calc">
           {entries.map((entry) => (
