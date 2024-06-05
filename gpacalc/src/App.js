@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Entry from './Entry.jsx';
+import closeIcon from './close-bold-svgrepo-com.svg'
 
 function App() {
   const gradeList = ['A+', 'A', 'A-', "B+", 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
@@ -30,19 +31,30 @@ function App() {
     setEntries(updatedEntries);
   };
 
+  const clearEntries = () => {
+    setEntries(entries.map((entry) => ({
+      ...entry,
+      courseName: '',
+      grade: '',
+      credits: '',
+    })));
+  };
+
   const grades = (grade) => {
-    if(grade === 'A+' || grade === 'A') return 4;
-    else if(grade === 'A-') return 3.7;
-    else if(grade === 'B+') return 3.3;
-    else if(grade === 'B') return 3.0;
-    else if(grade === 'B-') return 2.7;
-    else if(grade === 'C+') return 2.3;
-    else if(grade === 'C') return 2;
-    else if(grade === 'C-') return 1.7;
-    else if(grade === 'D+') return 1.3;
-    else if(grade === 'D') return 1;
-    else if(grade === 'D-') return 0.7;
-    else return 0;
+    switch(grade){
+      case('A+', 'A'): return 4;
+      case('A-'): return 3.7;
+      case('B+'): return 3.3;
+      case('B'): return 3;
+      case('B-'): return 2.7;
+      case('C+'): return 2.3;
+      case('C'): return 2;
+      case('C-'): return 1.7;
+      case('D+'): return 1.3;
+      case('D'): return 1;
+      case('D-'): return 0.7;
+      default: return 0;
+    }
   }
 
   const gpa = () => {
@@ -56,26 +68,35 @@ function App() {
         console.log('Credits: ' + numCredits)
       }
     })
-    return gradePoints/numCredits;
-    ;
+    return Math.round((gradePoints/numCredits + Number.EPSILON) * 100) / 100
   }
 
   return (
-    <div className="calc">
-      {entries.map((entry) => (
-        <div key={entry.id} className="row">
-          <Entry
-            id={entry.id}
-            courseName={entry.courseName}
-            grade={entry.grade}
-            credits={entry.credits}
-            updateEntry={updateEntry}
-          />
-          <button onClick={() => removeEntry(entry.id)}>Remove</button>
+    <div className='full'>
+      <div className='gpa-container'>
+        <h1 className='gpa-text'>GPA</h1>
+        <h1 className='gpa'>{gpa()}</h1>
+      </div>
+      <div className="calc">
+        {entries.map((entry) => (
+          <div key={entry.id} className="row">
+            <Entry
+              id={entry.id}
+              courseName={entry.courseName}
+              grade={entry.grade}
+              credits={entry.credits}
+              updateEntry={updateEntry}
+            />
+            <button className = 'remove' onClick={() => removeEntry(entry.id)}>
+              <img src={closeIcon} alt="Close Icon" />
+            </button>
+          </div>
+        ))}
+        <div className='buttons'>
+          <button className='add' onClick={addEntry}>Add</button>
+          <button className='clear' onClick={clearEntries}>Clear</button>
         </div>
-      ))}
-      <button className='add' onClick={addEntry}>Add</button>
-      <h2>{gpa()}</h2>
+      </div>
     </div>
   );
 }
