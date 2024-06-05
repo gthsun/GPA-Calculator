@@ -17,11 +17,13 @@ function App() {
   };
 
   const removeEntry = (id) => {
-    const newEntries = entries.filter((entry) => entry.id !== id).map((entry, index) => ({
-      ...entry,
-      id: index + 1
-    }));
-    setEntries(newEntries);
+    if(entries.length > 1) {
+      const newEntries = entries.filter((entry) => entry.id !== id).map((entry, index) => ({
+        ...entry,
+        id: index + 1
+      }));
+      setEntries(newEntries);
+    }
   };
 
   const updateEntry = (id, field, value) => {
@@ -63,38 +65,42 @@ function App() {
     entries.forEach((entry) => {
       if(gradeList.includes(entry.grade) && entry.credits >= 0.5 && entry.credits <= 15){
         gradePoints += grades(entry.grade)*entry.credits;
-        console.log('GP: ' + gradePoints)
         numCredits += parseFloat(entry.credits);
-        console.log('Credits: ' + numCredits)
       }
     })
-    return Math.round((gradePoints/numCredits + Number.EPSILON) * 100) / 100
+    return numCredits > 0 ? Math.round((gradePoints/numCredits + Number.EPSILON) * 100) / 100 : "???";
   }
 
   return (
-    <div className='full'>
-      <div className='gpa-container'>
-        <h1 className='gpa-text'>GPA</h1>
-        <h1 className='gpa'>{gpa()}</h1>
+    <div className='main'>
+      <div className='title'>
+        <h1>University of Virginia</h1>
+        <h1>GPA Calculator</h1>
       </div>
-      <div className="calc">
-        {entries.map((entry) => (
-          <div key={entry.id} className="row">
-            <Entry
-              id={entry.id}
-              courseName={entry.courseName}
-              grade={entry.grade}
-              credits={entry.credits}
-              updateEntry={updateEntry}
-            />
-            <button className = 'remove' onClick={() => removeEntry(entry.id)}>
-              <img src={closeIcon} alt="Close Icon" />
-            </button>
+      <div className='full'>
+        <div className='gpa-container'>
+          <h5 className='gpa-text'>Your GPA is</h5>
+          <h1 className='gpa'>{gpa()}</h1>
+        </div>
+        <div className="calc">
+          {entries.map((entry) => (
+            <div key={entry.id} className="row">
+              <Entry
+                id={entry.id}
+                courseName={entry.courseName}
+                grade={entry.grade}
+                credits={entry.credits}
+                updateEntry={updateEntry}
+              />
+              <button className = 'remove' onClick={() => removeEntry(entry.id)}>
+                <img src={closeIcon} alt="Close Icon" />
+              </button>
+            </div>
+          ))}
+          <div className='buttons'>
+            <button className='add' onClick={addEntry}>Add</button>
+            <button className='clear' onClick={clearEntries}>Clear</button>
           </div>
-        ))}
-        <div className='buttons'>
-          <button className='add' onClick={addEntry}>Add</button>
-          <button className='clear' onClick={clearEntries}>Clear</button>
         </div>
       </div>
     </div>
