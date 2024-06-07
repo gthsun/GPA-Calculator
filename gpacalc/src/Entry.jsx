@@ -6,16 +6,18 @@ function Entry({ id, courseName, grade, credits, updateEntry }) {
   };
 
   return (
-    <div className="entry">
+    <div class="flex flex-row gap-[25px] grow">
       <input
         className="course"
+        class="border text-[#E57200] bg-[#1a2238] pl-[5px] border-solid border-[lightslategray] placeholder-primary placeholder-opacity-50 hover:bg-rhino"
         type="text"
         value={courseName}
         placeholder={`Course Name ${id}`}
         onChange={(e) => handleInputChange(e, "courseName")}
       />
       <select
-        className="grade"
+        className="grades"
+        class="border text-[#E57200] bg-[#1a2238] pl-[5px] border-solid border-[lightslategray] hover:bg-rhino"
         value={grade}
         onChange={(e) => handleInputChange(e, "grade")}
       >
@@ -38,6 +40,7 @@ function Entry({ id, courseName, grade, credits, updateEntry }) {
       </select>
       <input
         className="credits"
+        class="border text-[#E57200] bg-[#1a2238] pl-[5px] border-solid border-[lightslategray] placeholder-primary placeholder-opacity-50 hover:bg-rhino"
         type="text"
         value={credits}
         placeholder="# of Credits"

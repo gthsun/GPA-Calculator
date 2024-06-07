@@ -10,6 +10,10 @@ function App() {
     { id: 2, courseName: '', grade: '', credits: '' },
     { id: 3, courseName: '', grade: '', credits: '' },
     { id: 4, courseName: '', grade: '', credits: '' },
+    { id: 5, courseName: '', grade: '', credits: '' },
+    { id: 6, courseName: '', grade: '', credits: '' },
+    { id: 7, courseName: '', grade: '', credits: '' },
+    { id: 8, courseName: '', grade: '', credits: '' },
   ]);
 
   const addEntry = () => {
@@ -81,20 +85,20 @@ function App() {
   };
 
   return (
-    <div className='main'>
-      <div className='title'>
+    <div class='flex flex-row float-right;'>
+      <div class='text-[#E57200] text-[40px] flex flex-col items-center text-center mt-36 font-days-one'>
         <h1>University of Virginia</h1>
         <h1>GPA Calculator</h1>
-        <p className='desc'>I created this application to help me learn ReactJS. It follow's UVA's grading scale. I hope it helps you for all your GPA calculation needs!</p>
+        <p class='text-[#f89430] text-[15px] mt-[50px] mx-[50px]'>Created as a tool to better understand ReactJS and TailwindCSS, this UVA GPA Calculator application is simple in nature, but extremely useful!</p>
       </div>
       <div className='full'>
-        <div className='gpa-container'>
-          <h5 className='gpa-text'>Your GPA is</h5>
-          <h1 className='gpa' style={{ color: gpaColor(gpa()) }}>{gpa()}</h1>
+        <div class='flex flex-col items-center mx-[100px] font-aldrich'>
+          <h5 class='text-[25px] flex flex-row items-center h-[100px] inline-size: 150px'>Your GPA is</h5>
+          <h1 class='text-[100px] flex flex-row items-center h-[100px] mb-5' style={{ color: gpaColor(gpa()) }}>{gpa()}</h1>
         </div>
-        <div className="calc">
+        <div class="flex flex-col items-center max-w-[600px] w-full box-border font-mukta-vaali">
           {entries.map((entry) => (
-            <div key={entry.id} className="row">
+            <div key={entry.id} class="flex flex-row items-center w-full box-border pl-2.5 border-b border-[#E57200] border-solid">
               <Entry
                 id={entry.id}
                 courseName={entry.courseName}
@@ -102,14 +106,18 @@ function App() {
                 credits={entry.credits}
                 updateEntry={updateEntry}
               />
-              <button className = 'remove' onClick={() => removeEntry(entry.id)}>
+              <button class='w-[50px] h-[60px] items-center p-2.5 hover:bg-[#313f69]' onClick={() => removeEntry(entry.id)}>
                 <img src={closeIcon} alt="Close Icon" />
               </button>
             </div>
           ))}
-          <div className='buttons'>
-            <button className='add' onClick={addEntry}>Add</button>
-            <button className='clear' onClick={clearEntries}>Clear</button>
+          <div class='flex flex-row gap-2.5 mx-0 my-5'>
+            <button className='add' class='bg-[#232D4B] text-[#E57200] border-[#E57200] w-20 
+            shadow-[0px_5px_0px_#8B4000] rounded-[10px] border-2 border-solid hover:bg-rhino' 
+            onClick={addEntry}>Add</button>
+            <button className='clear' class='bg-[#232D4B] text-[#E57200] border-[#E57200] w-20 
+            shadow-[0px_5px_0px_#8B4000] rounded-[10px] border-2 border-solid hover:bg-rhino' 
+            onClick={clearEntries}>Clear</button>
           </div>
         </div>
       </div>
